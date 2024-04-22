@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(fileUpload())
 
 app.use(cors({
-    origin:process.env.CLIENT_ORIGIN,
+    origin:"*",
     credentials:true,
 }));
 
