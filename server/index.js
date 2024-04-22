@@ -34,7 +34,9 @@ app.use("/api/payment",paymentRoutes);
 
 app.use(erorMiddleware);
 
-
+app.get("/",(req,res)=>{
+    res.json({message:"Welcome"});
+})
 
 process.on("uncaughtException",(err)=>{
     console.log(err);
