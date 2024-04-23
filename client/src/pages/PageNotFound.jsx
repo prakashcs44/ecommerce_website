@@ -16,7 +16,10 @@ function PageNotFound() {
       </Typography>
       <Link to="/">
         <Button  color="primary" className="mt-8">
+          <Link to = "/products">
           Go back to Home
+          </Link>
+         
         </Button>
       </Link>
     </div>
