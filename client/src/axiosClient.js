@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-    baseURL: `https://ecommerce-website-three-sepia-59.vercel.app/api`,
+    baseURL: `https://ecommerce-website-lm3b.onrender.com/api`,
     headers:{
       "Content-Type":"application/json",
     },
