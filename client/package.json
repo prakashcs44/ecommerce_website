@@ -1,6 +1,5 @@
 {
   "name": "client",
-  "homepage": "https://prakashcs44.github.io/ecommerce",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,9 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -45,7 +42,6 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "gh-pages": "^6.1.1",
     "postcss": "^8.4.36",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.6"
