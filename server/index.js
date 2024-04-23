@@ -20,8 +20,9 @@ app.use(cookieParser());
 app.use(fileUpload())
 
 app.use(cors({
-    origin:"https://ecommerce-website-jwke.vercel.app",
+    origin:process.env.CLIENT_ORIGIN||"*",
     credentials:true,
+    
 }));
 
 
