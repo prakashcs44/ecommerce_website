@@ -40,6 +40,7 @@ function CreateProduct() {
      try{
          await createProduct(myData);
           toast.success("Product created successfully");
+          navigate("/admin/products");
      }
      catch(err){
        toast.error(err.message);
