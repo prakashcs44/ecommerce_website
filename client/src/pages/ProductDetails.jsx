@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from '../components/product/Carousel';
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetails } from '../state/slices/productDetailsSlice';
+import { getProductDetails } from '../redux/slices/productDetailsSlice';
 import { useParams } from "react-router-dom";
 import Loader from "../components/loaders/PageLoader";
 import Rating from "../components/product/Rating";
 import ReviewCard from '../components/ReviewCard';
 import MetaData from '../components/layout/MetaData';
-import {addItemToCart} from "../state/slices/cartSlice";
+import {addItemToCart} from "../redux/slices/cartSlice";
 import toast from "react-hot-toast";
 import {
   Dialog,

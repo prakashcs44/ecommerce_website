@@ -11,7 +11,7 @@ import { Country, State } from "country-state-city";
 import CheckoutSteps from "../../components/CheckoutSteps";
 import {useNavigate} from "react-router-dom";
 import toast from "react-hot-toast";
-import { saveShippingInfo } from "../../state/slices/cartSlice";
+import { saveShippingInfo } from "../../redux/slices/cartSlice";
 
 const Shipping = () => {
   const dispatch = useDispatch();

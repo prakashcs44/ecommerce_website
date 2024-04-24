@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeItemFromCart } from "../state/slices/cartSlice";
+import { removeItemFromCart } from "../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 

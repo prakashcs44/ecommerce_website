@@ -3,7 +3,7 @@ import Product from '../components/product/ProductCard';
 import { CgMouse } from 'react-icons/cg';
 import MetaData from '../components/layout/MetaData';
 import {useDispatch,useSelector} from "react-redux";
-import { getProducts } from '../state/slices/productSlice';
+import { getProducts } from '../redux/slices/productSlice';
 import Loader from '../components/loaders/PageLoader';
 
 

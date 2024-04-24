@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearStatus, myOrders } from "../../state/slices/orderSlice";
-import Loader from "../../components/loaders/PageLoader";
+import {  myOrders } from "../../redux/slices/orderSlice";
+
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+
 import MetaData from "../../components/layout/MetaData";
 import { Typography } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+
 import IconButton from '@mui/material/IconButton';
 import NothingToShow from "../../components/NothingToShow";
 

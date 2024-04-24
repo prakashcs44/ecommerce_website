@@ -2,7 +2,7 @@ import React,{ useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 import Metadata from "../../components/layout/MetaData"
-import { changePassword,clearStatus } from '../../state/slices/userSlice';
+import { changePassword,clearStatus } from '../../redux/slices/userSlice';
 
 function ChangePassword() {
     const [oldPassword, setOldPassword] = useState("");

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../components/layout/MetaData";
 import { Link, useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
-import { getOrderDetails } from "../../state/slices/orderDetailsSlice";
+import { getOrderDetails } from "../../redux/slices/orderDetailsSlice";
 import Loader from "../../components/loaders/PageLoader";
 import toast from "react-hot-toast";
 

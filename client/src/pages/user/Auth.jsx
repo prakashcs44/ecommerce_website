@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { login, register, clearStatus } from "../../state/slices/userSlice";
+import { login, register, clearStatus } from "../../redux/slices/userSlice";
 import { Avatar, Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";

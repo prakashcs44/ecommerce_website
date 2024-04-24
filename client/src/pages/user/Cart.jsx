@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import CartItem from "../../components/CartItem";
 import MetaData from '../../components/layout/MetaData';
 import { Button } from '@mui/material';
-import { getCartItems } from '../../state/slices/cartSlice';
+import { getCartItems } from '../../redux/slices/cartSlice';
 
 
 function Cart() {

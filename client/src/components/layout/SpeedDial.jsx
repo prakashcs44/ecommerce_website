@@ -1,7 +1,6 @@
-import  React, { useEffect } from 'react';
+import  React from 'react';
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { Avatar } from '@mui/material';
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -11,8 +10,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {useNavigate} from "react-router-dom";
 import { useSelector,useDispatch } from 'react-redux';
-import {logout,clearStatus} from "../../state/slices/userSlice";
-import toast from "react-hot-toast";
+import {logout} from "../../redux/slices/userSlice";
 export default function BasicSpeedDial() {
 
    const {user,status,error} = useSelector(state=>state.user);

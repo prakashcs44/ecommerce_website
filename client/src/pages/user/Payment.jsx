@@ -18,7 +18,7 @@ import axiosClient from "../../axiosClient";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import EventIcon from "@mui/icons-material/Event";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { createOrder } from "../../state/slices/orderSlice";
+import { createOrder } from "../../redux/slices/orderSlice";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {

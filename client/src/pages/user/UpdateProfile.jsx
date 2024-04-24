@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar, TextField } from "@mui/material";
-import { updateProfile,clearStatus } from "../../state/slices/userSlice";
+import { updateProfile,clearStatus } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import Metadata from "../../components/layout/MetaData";
 import Form from "../../components/Form";

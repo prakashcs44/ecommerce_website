@@ -75,7 +75,7 @@ export const apiLogin = async(data)=>{
  };
  
  
- export const apiChangePassword = async(data)=>{
+ export const apiUpdatePassword = async(data)=>{
      const link = `/user/password/update`;
      const config = {withCredentials:true};
      const res = await axiosClient.put(link,data,config);

@@ -1,6 +1,26 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
-import { apiLogin,apiRegister,apiLoadUser,apiLogout,apiUpdateProfile,apiChangePassword } from "../api/user.js";
+import { apiLogin,apiRegister,apiLoadUser,apiLogout,apiUpdateProfile,apiUpdatePassword } from "../api/user.js";
+import {
+    LOGIN_REQUEST,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    REGISTER_USER_FAIL,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_REQUEST,
+    LOAD_USER_FAIL,
+    LOAD_USER_REQUEST,
+    LOAD_USER_SUCCESS,
+    LOGOUT_FAIL,
+    LOGOUT_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PASSWORD_SUCCESS,
+}
 
+from "../constants/user.js"
 
 
 
@@ -18,7 +38,7 @@ export const logout = createAsyncThunk("logout",apiLogout);
 
 export const updateProfile = createAsyncThunk("updateProfile",apiUpdateProfile);
 
-export const changePassword = createAsyncThunk("changePassword",apiChangePassword);
+export const updatePassword = createAsyncThunk("updatePassword",apiUpdatePassword);
 
 
 
@@ -26,7 +46,7 @@ const initialState = {
     isAuthenticated:false,
     user:{},
     error:"",
-    status:"",
+    type:"",
     
 }
 
@@ -36,7 +56,7 @@ const userSlice = createSlice({
     initialState,
     reducers:{
       clearStatus(state,action){
-              state.status = "";
+              state.type = "";
               state.error = "";
       },
 
@@ -45,17 +65,18 @@ const userSlice = createSlice({
         builder.addCase(login.fulfilled,(state,action)=>{
             state.user = action.payload?.user;
             state.isAuthenticated = true;
-            state.status = "success";
+            state.type = LOGIN_SUCCESS;
             state.error="";
             
            
         })
         .addCase(login.pending,(state,action)=>{
-            state.status = "loading";
+            
+            state.type = LOGIN_REQUEST;
             
         })
         .addCase(login.rejected,(state,action)=>{
-            state.status = "fail";
+            state.type = LOGIN_FAIL;
             state.isAuthenticated = false;
             state.user = {};
             state.error=action.error.message;
@@ -64,7 +85,7 @@ const userSlice = createSlice({
         })
         .addCase(register.fulfilled,(state,action)=>{
             state.user = action.payload?.user;
-            state.status = "success";
+            state.status = REGISTER_USER_SUCCESS;
             state.isAuthenticated = true;
             
         })
@@ -73,55 +94,55 @@ const userSlice = createSlice({
             state.isAuthenticated = false;
             state.user = {};
             state.error=action.error.message;
-            state.status = "fail";
+            state.type = REGISTER_USER_FAIL;
         })
         .addCase(register.pending,(state,action)=>{
-            state.status = "loading";
+            state.type = REGISTER_USER_REQUEST;
         })
         .addCase(loadUser.fulfilled,(state,action)=>{
             state.user = action.payload?.user;
-            state.status = "success";
+            state.type = LOAD_USER_SUCCESS;
             state.isAuthenticated = true;
         })
         .addCase(loadUser.rejected,(state,action)=>{
             state.user = action.payload?.user||{};
-            state.status = "fail";
+            state.type = LOAD_USER_FAIL;
             state.isAuthenticated = false;
         })
         .addCase(loadUser.pending,(state,action)=>{
-            state.status = "loading";
+            state.type = LOAD_USER_REQUEST;
         })
         .addCase(logout.fulfilled,(state,action)=>{
             state.user = {};
             state.isAuthenticated = false;
-            state.status = "success";
+            state.type = LOGOUT_SUCCESS;
         })
         .addCase(logout.rejected,(state,action)=>{
-            state.status = "fail";
+            state.type = LOGOUT_FAIL;
         })
         .addCase(logout.pending,(state,action)=>{
-            state.status = "loading";
+            
         })
         .addCase(updateProfile.pending,(state,action)=>{
-            state.status = "loading";
+            state.type = UPDATE_PROFILE_REQUEST;
         })
         .addCase(updateProfile.fulfilled,(state,action)=>{
             state.user = action.payload.user;
-            state.status="success";
+            state.type=UPDATE_PROFILE_SUCCESS;
         })
         .addCase(updateProfile.rejected,(state,action)=>{
-            state.status="fail";
+            state.type=UPDATE_PROFILE_FAIL;
             state.error = action.error.message;
         })
-        .addCase(changePassword.pending,(state,action)=>{
-            state.status = "loading";
+        .addCase(updatePassword.pending,(state,action)=>{
+            state.type = UPDATE_PASSWORD_REQUEST;
         })
-        .addCase(changePassword.fulfilled,(state,action)=>{
-            state.status="success";
+        .addCase(updatePassword.fulfilled,(state,action)=>{
+            state.type=UPDATE_PASSWORD_SUCCESS;
             state.user=action.payload.user;
         })
-        .addCase(changePassword.rejected,(state,action)=>{
-            state.status="fail";
+        .addCase(updatePassword.rejected,(state,action)=>{
+            state.type=UPDATE_PASSWORD_FAIL;
         })
     }
 });
