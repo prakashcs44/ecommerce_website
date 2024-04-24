@@ -1,18 +1,8 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import axiosClient from "../../axiosClient.js";
+import { apiGetOrderDetails } from "../api/orderDetails";
 
 
-export const getOrderDetails = createAsyncThunk("getOrderDetails",async(id)=>{
-   
-   try{
-    const link=`/order/${id}`;
-    const res = await axiosClient.get(link);
-    return res.data;
-   }
-   catch(err){
-    throw new Error(err.response.data?.message);
-   }
-})
+export const getOrderDetails = createAsyncThunk("getOrderDetails",apiGetOrderDetails);
 
 
 const initialState = {

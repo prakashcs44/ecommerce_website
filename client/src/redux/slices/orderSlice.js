@@ -1,33 +1,16 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import axiosClient from "../../axiosClient.js";
+import { apiCreateOrder,apiMyOrders } from "../api/order";
 
 
 
 
 
 
-export const createOrder = createAsyncThunk("createOrder",async(data)=>{
-    try{
-     const link = "/order/new";
-    const response  =  await axiosClient.post(link,data);
-    return response.data;
-    }
-    catch(err){
-      throw new Error(err.response.data?.message);
-    }
-})
+export const createOrder = createAsyncThunk("createOrder",apiCreateOrder);
 
 
-export const myOrders = createAsyncThunk("myOrders",async()=>{
-  try{
-   const link = "/order/me";
-  const response  =  await axiosClient.get(link);
-  return response.data;
-  }
-  catch(err){
-    throw new Error(err.response.data?.message);
-  }
-})
+
+export const myOrders = createAsyncThunk("myOrders",apiMyOrders);
 
 
 

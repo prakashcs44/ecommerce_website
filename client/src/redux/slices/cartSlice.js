@@ -1,54 +1,14 @@
-import { createSlice,createAsyncThunk, configureStore } from "@reduxjs/toolkit";
-import axiosClient from "../../axiosClient.js";
+import { createSlice,createAsyncThunk} from "@reduxjs/toolkit";
+import { apiGetCartItems,apiRemoveItemFromCart,apiAddItemToCart } from "../api/cart";
 
 
 
-export const addItemToCart = createAsyncThunk("addItemToCart",async(data)=>{
-  const link = `/user/cart/add`;
-  const config = {withCredentials:true};
-  try{
-    
-   const res = await axiosClient.post(link,data,config);
-   return res.data;
-  }
-
-  catch(err){
-    throw new Error(err.response.data?.message||"Something went wrong");
-  }
-})
+export const addItemToCart = createAsyncThunk("addItemToCart",apiAddItemToCart);
 
 
-export const removeItemFromCart = createAsyncThunk("removeItemFromCart",async(productId)=>{
-  const link = `/user/cart/remove`;
-  const config = {withCredentials:true};
-  const data = {productId};
-  try{
-   const res = await axiosClient.post(link,data,config);
-   return res.data;
-  }
+export const removeItemFromCart = createAsyncThunk("removeItemFromCart",apiRemoveItemFromCart);
 
-
-
-
-  catch(err){
-    throw new Error(err.response.data?.message||"Something went wrong");
-  }
-
-})
-
-export const getCartItems = createAsyncThunk("getCardItems",async()=>{
-    const link = "/user/cart";
-    const config = {withCredentials:true};
-    try{
-
-      const res = await axiosClient.get(link,config);
-      return res.data;
-      
-    }
-    catch(err){
-      throw new Error(err.response.data?.message||"Something went wrong");
-    }
-})
+export const getCartItems = createAsyncThunk("getCardItems",apiGetCartItems);
 
 
 

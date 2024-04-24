@@ -1,90 +1,24 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
-import axiosClient from "../../axiosClient.js";
+import { apiLogin,apiRegister,apiLoadUser,apiLogout,apiUpdateProfile,apiChangePassword } from "../api/user.js";
 
 
 
 
-
-export const login = createAsyncThunk("login",async(data)=>{
-    
-   const link = `/user/login`;
-  
-   const config = { headers: { "Content-Type": "application/json" }, withCredentials: true };
-
-   try{
-    const res = await axiosClient.post(link,data,config);
-    return res.data;
-   }
-   catch(err){
-    throw new Error(err.response.data?.message);
-   }
-  
-  
-
-})
+export const login = createAsyncThunk("login",apiLogin);
 
 
-export const register = createAsyncThunk("register",async(data)=>{
-
-
- 
-
-   const link = `/user/register`;
-   const config = { headers: { "Content-Type": "multipart/form-data" }, withCredentials: true };
-   try{
-    const res = await axiosClient.post(link,data,config);
-    return res.data;
-   }
-   catch(err){
-    throw new Error(err.response.data?.message)
-   }
-   
-})
+export const register = createAsyncThunk("register",apiRegister);
 
 
 
 
-export const loadUser = createAsyncThunk("loadUser",async()=>{
-    const link = `/user/me`;
-    const config = { withCredentials: true}
-    const res = await axiosClient.get(link,config);
-    
-   return res.data;
+export const loadUser = createAsyncThunk("loadUser",apiLoadUser);
 
-});
+export const logout = createAsyncThunk("logout",apiLogout);
 
+export const updateProfile = createAsyncThunk("updateProfile",apiUpdateProfile);
 
-export const logout = createAsyncThunk("logout",async()=>{
-    const link = `/user/logout`;
-    const config = { withCredentials: true}
-    const res = await axiosClient.get(link,config);
-    return res.data;
-});
-
-
-
-export const updateProfile = createAsyncThunk("updateProfile",async(data)=>{
-    
-    
-    try{
-        const link = `/user/me/update`;
-        const config = { headers: { "Content-Type": "multipart/form-data" },withCredentials:true};
-        const res = await axiosClient.put(link,data,config);
-        return res.data;
-    }
-    catch(err){
-        throw new Error(err.response.data?.message);
-    }
-  
-})
-
-
-export const changePassword = createAsyncThunk("changePassword",async(data)=>{
-    const link = `/user/password/update`;
-    const config = {withCredentials:true};
-    const res = await axiosClient.put(link,data,config);
-    return res.data;
-})
+export const changePassword = createAsyncThunk("changePassword",apiChangePassword);
 
 
 

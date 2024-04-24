@@ -1,32 +1,8 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import axiosClient from "../../axiosClient.js";
+import { apiGetProducts } from "../api/product";
 
 
-export const getProducts = createAsyncThunk("getProducts",async({keyword,page=1,price=[0,25000],category})=>{
-
-
-   
-
-   try{
-    let link = `/product?page=${page}&max_price=${price[1]}&min_price=${price[0]}`;
-    if(keyword){
-      link = `${link}&keyword=${keyword}`;
-    }
-  
-    if(category){
-      link = `${link}&category=${category}`;
-    }
-   
-     const res = await axiosClient.get(link);
-  
-     return res.data;
-   }
-   catch(err){
-    throw new Error(err.response.data?.message);
-   }
-  
-  
-})
+export const getProducts = createAsyncThunk("getProducts",apiGetProducts);
 
 
 const initialState = {
