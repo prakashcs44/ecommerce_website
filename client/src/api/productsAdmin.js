@@ -19,7 +19,7 @@ export const createProduct = async (data)=>{
     try{
        const link  = "/product/new";
        const config = {headers:{"Content-Type":"multipart/form-data"}};
-       const res = await axiosClient.post(link,data,config);
+       const res = await axiosClient.post(link,data);
        return res.data.product;
     }
 

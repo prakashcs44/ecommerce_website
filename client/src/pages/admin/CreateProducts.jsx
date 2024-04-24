@@ -24,19 +24,21 @@ function CreateProduct() {
   const createProductSubmitHandler =async (e) => {
     e.preventDefault();
    setLoading(true);
-    const myForm = new FormData();
+    
+    const myData={
+      name,
+      price,
+      description,
+      category,
+      stock,
+      images,
+    }
+   
 
-    myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", stock);
-
-    images.forEach((image) => {
-      myForm.append("images", image);
-    });
+   
+    
      try{
-         await createProduct(myForm);
+         await createProduct(myData);
           toast.success("Product created successfully");
      }
      catch(err){
@@ -47,7 +49,7 @@ function CreateProduct() {
       setStock(0);
       setCategory("");
       setDescription("");
-     setLoading(false);
+      setLoading(false);
   };
 
 
