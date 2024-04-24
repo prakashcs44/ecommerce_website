@@ -1,19 +1,34 @@
-import React,{ useState} from 'react'
+import React,{ useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 import Metadata from "../../components/layout/MetaData"
 import { changePassword,clearStatus } from '../../redux/slices/userSlice';
+import toast from "react-hot-toast";
+import { UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS }
+from "../../redux/constants/user";
+
 
 function ChangePassword() {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword,setNewPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
-    const {status} = useSelector(state=>state.user);
+    const {type,error} = useSelector(state=>state.user);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
   
+    useEffect(()=>{
+       if(type === UPDATE_PASSWORD_SUCCESS){
+          toast.success("Password updated successfully");
+          dispatch(clearStatus());
+       }
+       if(error!==""){
+        toast.error(error);
+        dispatch(clearStatus());
+       }
+    },[type]);
+
     
    
     const handleSubmit = (event) => {
@@ -112,7 +127,7 @@ function ChangePassword() {
             <div>
               <button
                 type="submit"
-                disabled = {status==="loading"}
+                disabled = {type===UPDATE_PASSWORD_REQUEST}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                Change

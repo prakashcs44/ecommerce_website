@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 import Metadata from "../../components/layout/MetaData";
 import Form from "../../components/Form";
 import toast from "react-hot-toast";
+import { UPDATE_PROFILE_FAIL, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from "../../redux/constants/user";
 function UpdateProfile() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState();
   const dispatch = useDispatch();
-  const { user,status,error } = useSelector((state) => state.user);
+  const { user,type,error } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,18 +25,18 @@ function UpdateProfile() {
 
   useEffect(()=>{
     
-     if(status==="success"){
+     if(type===UPDATE_PROFILE_SUCCESS){
        toast.success("Profile updated successfully");
        navigate("/account");
        dispatch(clearStatus());
        
      }
-     else if(status==="fail"){
+     else if(type===UPDATE_PROFILE_FAIL){
       toast.error(error)
       dispatch(clearStatus());
      }
 
-  },[status])
+  },[type])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,7 +70,7 @@ function UpdateProfile() {
   return (
     <>
       <Metadata title="Profile - Update" />
-      <Form title="Update Profile" buttonText="Update" onSubmit={handleSubmit} buttonDisable={status==="loading"}>
+      <Form title="Update Profile" buttonText="Update" onSubmit={handleSubmit} buttonDisable={type===UPDATE_PROFILE_REQUEST}>
        
           <TextField
             type="email"

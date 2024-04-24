@@ -7,7 +7,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Products from "./pages/user/Products";
 import Auth from "./pages/user/Auth.jsx";
 import {useDispatch} from "react-redux";
-import { loadUser } from "./state/slices/userSlice";
+import { loadUser } from "./redux/slices/userSlice";
 import Profile from "./pages/user/Profile.jsx";
 import UserProtectedRoute from "./components/route/UserProtectedRoute.jsx";
 import  UpdateProfile  from "./pages/user/UpdateProfile.jsx";
@@ -18,7 +18,7 @@ import Cart from "./pages/user/Cart.jsx";
 import Shipping from "./pages/user/Shipping.jsx";
 import ConfirmOrder from "./pages/user/ConfirmOrder.jsx";
 import {Toaster} from "react-hot-toast";
-import { getCartItems } from "./state/slices/cartSlice.js";
+import { getCartItems } from "./redux/slices/cartSlice.js";
 import { loadStripe } from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js";
 import axiosClient from "./axiosClient.js";
@@ -41,6 +41,7 @@ function App() {
 
   const dispatch = useDispatch();
   const [stripeApiKey,setStripeApiKey] = useState();
+
   const getStripeApiKey = async ()=>{
 
     const res  = await axiosClient.get("/payment/stripeapikey");

@@ -5,6 +5,9 @@ import { Avatar, Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import ButtonLoader from "../../components/loaders/ButtonLoader"
+import { LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_REQUEST } 
+from "../../redux/constants/user.js"
+
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -13,23 +16,22 @@ const Auth = () => {
   const [avatar, setAvatar] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState();
   const navigate = useNavigate();
-  const { isAuthenticated, status, error } = useSelector((state) => state.user);
+  const { isAuthenticated, type, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const [isLogin, setIsLogin] = useState(true);
 
   useEffect(() => {
-    if (status === "success" && isAuthenticated) {
+    if (type === LOGIN_SUCCESS && isAuthenticated) {
       toast.success("Logged in successfully");
       dispatch(clearStatus());
       navigate("/account");
     }
-
     if (error !== "") {
       toast.error(error);
       dispatch(clearStatus());
     }
-  }, [status]);
+  }, [type]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -127,12 +129,12 @@ const Auth = () => {
 
           <div className="flex justify-center">
             <Button
-              disabled={status === "loading"}
+              disabled={type===LOGIN_REQUEST||type===REGISTER_USER_REQUEST}
               type="submit"
               variant="contained"
               sx = {{width:"60%"}}
             >
-              {status==="loading"?(
+              {type===LOGIN_REQUEST||type===REGISTER_USER_REQUEST?(
                 <ButtonLoader/>
               ):(
                 isLogin ? "Sign in" : "Register"
