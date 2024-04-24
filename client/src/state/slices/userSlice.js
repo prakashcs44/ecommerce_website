@@ -6,7 +6,7 @@ import axiosClient from "../../axiosClient.js";
 
 
 export const login = createAsyncThunk("login",async(data)=>{
-    await new Promise(resolve=>setTimeout(()=>resolve(),2000))
+    
    const link = `/user/login`;
   
    const config = { headers: { "Content-Type": "application/json" }, withCredentials: true };
@@ -64,7 +64,7 @@ export const logout = createAsyncThunk("logout",async()=>{
 
 
 export const updateProfile = createAsyncThunk("updateProfile",async(data)=>{
-    await new Promise(resolve=>setTimeout(()=>resolve(),2000))
+    
     
     try{
         const link = `/user/me/update`;
