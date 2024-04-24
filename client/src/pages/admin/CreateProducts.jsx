@@ -20,9 +20,18 @@ function CreateProduct() {
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
   const [loading,setLoading] = useState(false);
+
+
+
+ 
    
   const createProductSubmitHandler =async (e) => {
     e.preventDefault();
+
+
+   
+
+
    setLoading(true);
     
     const myData={
@@ -57,11 +66,19 @@ function CreateProduct() {
 
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
+    const maxFileSize = 3*1024* 1024; // 3mb
 
     setImages([]);
     setImagesPreview([]);
 
     files.forEach((file) => {
+      if(file.size>maxFileSize){
+        toast.error(`File "${file.name}" exceeds the maximum allowed size (3MB). Please choose a smaller file.`);
+        e.target.value = "";
+        return;
+       
+      }
+      
       const reader = new FileReader();
 
       reader.onload = () => {
@@ -72,7 +89,9 @@ function CreateProduct() {
       };
 
       reader.readAsDataURL(file);
+    
     });
+
   };
 
   return (
