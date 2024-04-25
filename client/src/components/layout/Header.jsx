@@ -12,7 +12,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Drawer from "./Drawer";
 import toast from "react-hot-toast";
 import { LOGOUT_FAIL,LOGOUT_SUCCESS } from '../../redux/constants/user';
-import toast from "react-hot-toast";
 import { clearStatus } from '../../redux/slices/userSlice';
 export default function Header() {
 
