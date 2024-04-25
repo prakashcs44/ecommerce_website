@@ -18,7 +18,7 @@ export default function Header() {
 
 const navigate = useNavigate();
 const dispatch = useDispatch();
-  const {user,isAuthenticated,type} = useSelector(state=>state.user);
+  const {user,isAuthenticated,type,error} = useSelector(state=>state.user);
   const [openDrawer,setOpenDrawer] = useState(false);
 
   useEffect(()=>{
