@@ -12,6 +12,7 @@ import CheckoutSteps from "../../components/CheckoutSteps";
 import {useNavigate} from "react-router-dom";
 import toast from "react-hot-toast";
 import { saveShippingInfo } from "../../redux/slices/cartSlice";
+import { Button,TextField } from "@mui/material";
 
 const Shipping = () => {
   const dispatch = useDispatch();
@@ -47,56 +48,57 @@ const Shipping = () => {
       <div className="container mx-auto px-4 py-4 max-w-md">
         <h2 className="text-2xl font-bold mb-4 text-center">Shipping Details</h2>
 
-        <form onSubmit={shippingSubmit}>
-          <div className="mb-4">
+        <form onSubmit = {shippingSubmit}>
+          <div className="mb-4 flex items-center">
             <HomeIcon className="inline-block mr-2" />
-            <input
+            <TextField
+             fullWidth
               type="text"
-              placeholder="Address"
-              className="border border-gray-300 px-4 py-2 w-full rounded-md"
+              label="Address"
               required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 flex items-center">
             <LocationCityIcon className="inline-block mr-2" />
-            <input
+            <TextField
+             fullWidth
               type="text"
-              placeholder="City"
-              className="border border-gray-300 px-4 py-2 w-full rounded-md"
+              label="City"
+             
               required
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 flex items-center">
             <PinDropIcon className="inline-block mr-2" />
-            <input
+            <TextField
               type="number"
-              placeholder="Pin Code"
-              className="border border-gray-300 px-4 py-2 w-full rounded-md"
+              label="Pin Code"
+              fullWidth
               required
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 flex items-center">
             <PhoneIcon className="inline-block mr-2" />
-            <input
+            <TextField
               type="number"
-              placeholder="Phone Number"
-              className="border border-gray-300 px-4 py-2 w-full rounded-md"
+              label="Phone Number"
+             fullWidth
               required
               value={phoneNo}
               onChange={(e) => setPhoneNo(e.target.value)}
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 flex items-center">
             <PublicIcon className="inline-block mr-2" />
             <select
               className="border border-gray-300 px-4 py-2 w-full rounded-md"
@@ -114,7 +116,7 @@ const Shipping = () => {
           </div>
 
           {country && (
-            <div className="mb-4">
+            <div className="mb-4 flex items-center">
               <TransferWithinAStationIcon className="inline-block mr-2" />
               <select
                 className="border border-gray-300 px-4 py-2 w-full rounded-md"
@@ -132,13 +134,19 @@ const Shipping = () => {
             </div>
           )}
 
-         
-          <button  
+          <div className="text-center">
+          <Button 
+          type="submit"
+           sx = {{width:"60%"}}
           disabled = {!state}
-          className={`block w-full py-2 bg-blue-500 text-white rounded-md text-center ${!state && 'opacity-50 cursor-not-allowed'}`}>
+          variant = "contained"
+          
+          >
         
            Continue
-          </button>
+          </Button>
+          </div>
+        
         </form>
       </div>
     </>
