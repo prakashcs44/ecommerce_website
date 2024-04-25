@@ -12,7 +12,7 @@ function Product({ product }) {
    
 
     const ratingOptions = {
-        value:product?.ratings,
+        value:product?.rating,
         readOnly:true,
 
     }
