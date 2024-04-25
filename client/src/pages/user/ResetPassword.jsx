@@ -5,13 +5,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import Form from "../../components/Form";
+import SensitiveInput from "../../components/SensitiveInput";
 
 function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { token } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+ 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,29 +33,9 @@ function ResetPassword() {
     <>
       <Metadata title="Password - Reset" />
       <Form onSubmit={handleSubmit} buttonText="Reset" title="Password Reset">
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Password"
-        />
+      <SensitiveInput inputLabel = "Password" value = {password} onChange = {(ev)=>setPassword(ev.target.value)}/>
 
-        <input
-          id="confirm-password"
-          name="confirm-password"
-          type="password"
-          autoComplete="current-password"
-          required
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-          placeholder="Confirm Password"
-        />
+      <SensitiveInput inputLabel = "Confirm Password" value = {confirmPassword} onChange = {(ev)=>setConfirmPassword(ev.target.value)}/>
       </Form>
     </>
   );

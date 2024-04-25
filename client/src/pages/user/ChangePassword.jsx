@@ -1,57 +1,55 @@
-import React,{ useEffect, useState} from 'react'
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom"
-import Metadata from "../../components/layout/MetaData"
-import { updatePassword,clearStatus } from '../../redux/slices/userSlice';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Metadata from "../../components/layout/MetaData";
+import { updatePassword, clearStatus } from "../../redux/slices/userSlice";
 import toast from "react-hot-toast";
-import { UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS }
-from "../../redux/constants/user";
-
+import {
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_SUCCESS,
+} from "../../redux/constants/user";
+import SensitiveInput from "../../components/SensitiveInput";
+import { Button } from "@mui/material";
+import ButtonLoader from "../../components/loaders/ButtonLoader";
 
 function ChangePassword() {
-    const [oldPassword, setOldPassword] = useState("");
-    const [newPassword,setNewPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
-    const {type,error} = useSelector(state=>state.user);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { type, error } = useSelector((state) => state.user);
   
-    useEffect(()=>{
-       if(type === UPDATE_PASSWORD_SUCCESS){
-          toast.success("Password updated successfully");
-          dispatch(clearStatus());
-       }
-       if(error!==""){
-        toast.error(error);
-        dispatch(clearStatus());
-       }
-    },[type]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    
-   
-    const handleSubmit = (event) => {
-  
-      event.preventDefault();
-      const data={
-        oldPassword,
-        newPassword,
-        confirmPassword,
-      }
-       dispatch(updatePassword(data));
-       setOldPassword("");
-       setConfirmPassword("");
-       setNewPassword("");
-       navigate("/account");
+  useEffect(() => {
+    if (type === UPDATE_PASSWORD_SUCCESS) {
+      toast.success("Password updated successfully");
+      dispatch(clearStatus());
+      navigate("/account");
+    }
+    if (error !== "") {
+      toast.error(error);
+      dispatch(clearStatus());
+    }
+  }, [type]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      oldPassword,
+      newPassword,
+      confirmPassword,
     };
-  
-  
-   
-  
-    return (
-        <>
-         <Metadata title = "Password - Change"/>
+    dispatch(updatePassword(data));
+    setOldPassword("");
+    setConfirmPassword("");
+    setNewPassword("");
+    
+  };
+
+  return (
+    <>
+      <Metadata title="Password - Change" />
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 ">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -60,85 +58,52 @@ function ChangePassword() {
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm space-y-4">
               <div className="mb-4">
-                <label htmlFor="old-password" className="sr-only">
-                  Old Password
-                </label>
-                <input
-                  id="old-password"
-                  name="old-password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
+                <SensitiveInput
+                  inputLabel="Old Password"
                   value={oldPassword}
-                  onChange={(e) => setOldPassword(e.target.value)}
-                  className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Old Password"
-                />
-              </div>
-  
-              <div className="mb-4">
-                <label htmlFor="new-password" className="sr-only">
-                  New Password
-                </label>
-                <input
-                  id="new-password"
-                  name="new-password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="New Password"
+                  onChange={(ev) => setOldPassword(ev.target.value)}
                 />
               </div>
 
               <div className="mb-4">
-                <label htmlFor="confirm-password" className="sr-only">
-                  Confirm Password
-                </label>
-                <input
-                  id="confirm-password"
-                  name="confirm-password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Confirm Password"
+                <SensitiveInput
+                  inputLabel="New Password"
+                  value={newPassword}
+                  onChange={(ev) => setNewPassword(ev.target.value)}
                 />
               </div>
-  
-  
-  
-             
-  
-             
-                    
-  
-  
-  
+
+              <div className="mb-4">
+                <SensitiveInput
+                  inputLabel="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(ev) => setConfirmPassword(ev.target.value)}
+                />
+              </div>
             </div>
-  
-            <div>
-              <button
+
+            <div className="text-center">
+              <Button
+               sx = {{width:"60%"}}
                 type="submit"
-                disabled = {type===UPDATE_PASSWORD_REQUEST}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                disabled={type === UPDATE_PASSWORD_REQUEST}
+                variant = "contained"
               >
-               Change
-              </button>
+                {type === UPDATE_PASSWORD_REQUEST?(
+                  <ButtonLoader/>
+                ):(
+                  "Change"
+                )
+              }
+              </Button>
             </div>
           </form>
-        
         </div>
       </div>
-      </>
-    );
+    </>
+  );
 }
 
 export default ChangePassword;

@@ -4,10 +4,13 @@ import { login, register, clearStatus } from "../../redux/slices/userSlice";
 import { Avatar, Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import ButtonLoader from "../../components/loaders/ButtonLoader"
-import { LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_REQUEST } 
-from "../../redux/constants/user.js"
-
+import ButtonLoader from "../../components/loaders/ButtonLoader";
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  REGISTER_USER_REQUEST,
+} from "../../redux/constants/user.js";
+import SensitiveInput from "../../components/SensitiveInput.jsx";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -31,8 +34,6 @@ const Auth = () => {
       toast.error(error);
       dispatch(clearStatus());
     }
-
-
   }, [type]);
 
   const handleSubmit = (event) => {
@@ -90,12 +91,10 @@ const Auth = () => {
             </div>
 
             <div className="mb-4">
-              <TextField
-                type="password"
-                label="Password"
+              <SensitiveInput
+                inputLabel="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                fullWidth
+                onChange={(ev) => setPassword(ev.target.value)}
               />
             </div>
 
@@ -131,17 +130,20 @@ const Auth = () => {
 
           <div className="flex justify-center">
             <Button
-              disabled={type===LOGIN_REQUEST||type===REGISTER_USER_REQUEST}
+              disabled={
+                type === LOGIN_REQUEST || type === REGISTER_USER_REQUEST
+              }
               type="submit"
               variant="contained"
-              sx = {{width:"60%"}}
+              sx={{ width: "60%" }}
             >
-              {type===LOGIN_REQUEST||type===REGISTER_USER_REQUEST?(
-                <ButtonLoader/>
-              ):(
-                isLogin ? "Sign in" : "Register"
+              {type === LOGIN_REQUEST || type === REGISTER_USER_REQUEST ? (
+                <ButtonLoader />
+              ) : isLogin ? (
+                "Sign in"
+              ) : (
+                "Register"
               )}
-              
             </Button>
           </div>
         </form>

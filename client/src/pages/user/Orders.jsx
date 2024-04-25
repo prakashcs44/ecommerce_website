@@ -50,7 +50,7 @@ const MyOrders = () => {
             </div>
           </div>
         ) : (
-          <NothingToShow title = "No Orders" redirect = "/products" redirectTitle="View Cart"/>
+          <NothingToShow title = "No Orders" redirect = "/cart" redirectTitle="View Cart"/>
           
         )}
     </>
