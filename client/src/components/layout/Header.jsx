@@ -15,27 +15,28 @@ import { LOGOUT_FAIL,LOGOUT_SUCCESS } from '../../redux/constants/user';
 import toast from "react-hot-toast";
 import { clearStatus } from '../../redux/slices/userSlice';
 export default function Header() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const {type} = useSelector(state=>state.user);
 
-useEffect(()=>{
-
-  if(type===LOGOUT_SUCCESS){
-    toast.success("Logout successfully");
-    dispatch(clearStatus());
-    navigate("/auth");
-   }
- if(type===LOGOUT_FAIL){
-    toast.error(error);
-    dispatch(clearStatus());
- }
-
-},[type])
-
-
-  const {user,isAuthenticated} = useSelector(state=>state.user);
+const navigate = useNavigate();
+const dispatch = useDispatch();
+  const {user,isAuthenticated,type} = useSelector(state=>state.user);
   const [openDrawer,setOpenDrawer] = useState(false);
+
+  useEffect(()=>{
+
+    if(type===LOGOUT_SUCCESS){
+      toast.success("Logout successfully");
+      dispatch(clearStatus());
+      navigate("/auth");
+     }
+   if(type===LOGOUT_FAIL){
+      toast.error(error);
+      dispatch(clearStatus());
+   }
+  
+  },[type])
+
+
+
   return (
     <Box >
       <AppBar position="fixed" sx = {{bgcolor:"white"}} elevation={0} >
