@@ -1,6 +1,6 @@
 import React,{useEffect, useRef, useState} from 'react'
 import { useParams } from 'react-router-dom';
-import {getSingleProduct, updateProduct} from "../../api/productsAdmin";
+import {getSingleProduct, updateProduct} from "../../redux/api/productsAdmin";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Categories from "../../components/product/Categories";

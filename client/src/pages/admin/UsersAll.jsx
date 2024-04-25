@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button} from '@mui/material';
 import { Update } from '@mui/icons-material';
 import toast from 'react-hot-toast';
-import { getAllUsers} from '../../api/usersAdmin'; 
+import { getAllUsers} from '../../redux/api/usersAdmin'; 
 import { useNavigate } from 'react-router-dom';
 import NothingToShow from '../../components/NothingToShow';
 

@@ -3,7 +3,7 @@ import { Button} from '@mui/material';
 import { Delete,Update } from '@mui/icons-material';
 import toast from 'react-hot-toast';
 import {  useNavigate } from 'react-router-dom';
-import { getAllOrders, deleteOrder } from '../../api/ordersAdmin';
+import { getAllOrders, deleteOrder } from '../../redux/api/ordersAdmin';
 import NothingToShow from '../../components/NothingToShow';
 
 

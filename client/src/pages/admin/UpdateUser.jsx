@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { Edit, Save, Cancel } from "@mui/icons-material";
-import { getSingleUser,updateUserRole } from "../../api/usersAdmin";
+import { getSingleUser,updateUserRole } from "../../redux/api/usersAdmin";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import ButtonLoader from "../../components/loaders/ButtonLoader";

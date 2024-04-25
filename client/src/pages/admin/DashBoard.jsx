@@ -3,8 +3,8 @@ import Sidebar from "../../components/admin/Sidebar.jsx";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../api/productsAdmin.js";
-import {getAllUsers} from "../../api/usersAdmin.js";
-import {getAllOrders} from "../../api/ordersAdmin.js";
+import {getAllUsers} from "../../redux/api/usersAdmin.js";
+import {getAllOrders} from "../../redux/api/ordersAdmin.js";
 
 import Loader from "../../components/loaders/PageLoader.jsx";
 import MetaData from "../../components/layout/MetaData.jsx";

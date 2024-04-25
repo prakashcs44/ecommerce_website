@@ -6,7 +6,7 @@ import PageLoader from "../../components/loaders/PageLoader"
 import toast from "react-hot-toast";
 import {Link, useNavigate} from "react-router-dom";
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import {getAllProducts,deleteProduct} from "../../api/productsAdmin"
+import {getAllProducts,deleteProduct} from "../../redux/api/productsAdmin"
 import NothingToShow from '../../components/NothingToShow';
 
 function ProductsAll() {

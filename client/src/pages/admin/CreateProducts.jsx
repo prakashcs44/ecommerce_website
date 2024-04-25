@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Avatar, TextField } from "@mui/material";
 import Metadata from "../../components/layout/MetaData";
 import toast from "react-hot-toast";
-import { createProduct } from "../../api/productsAdmin";
+import { createProduct } from "../../redux/api/productsAdmin";
 import { useNavigate } from "react-router-dom";
 import Categories from "../../components/product/Categories";
 import Form from "../../components/Form";
