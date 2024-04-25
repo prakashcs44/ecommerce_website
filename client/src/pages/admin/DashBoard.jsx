@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/admin/Sidebar.jsx";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { getAllProducts } from "../../api/productsAdmin.js";
+import { getAllProducts } from "../../redux/api/productsAdmin.js";
 import {getAllUsers} from "../../redux/api/usersAdmin.js";
 import {getAllOrders} from "../../redux/api/ordersAdmin.js";
 

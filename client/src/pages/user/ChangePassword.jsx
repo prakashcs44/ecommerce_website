@@ -2,7 +2,7 @@ import React,{ useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 import Metadata from "../../components/layout/MetaData"
-import { changePassword,clearStatus } from '../../redux/slices/userSlice';
+import { updatePassword,clearStatus } from '../../redux/slices/userSlice';
 import toast from "react-hot-toast";
 import { UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS }
 from "../../redux/constants/user";
@@ -39,7 +39,7 @@ function ChangePassword() {
         newPassword,
         confirmPassword,
       }
-       dispatch(changePassword(data));
+       dispatch(updatePassword(data));
        setOldPassword("");
        setConfirmPassword("");
        setNewPassword("");
