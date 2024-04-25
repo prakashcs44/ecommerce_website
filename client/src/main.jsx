@@ -10,7 +10,7 @@ import SomethingWentWrong from './components/SomeThingWentWrong.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+ 
     <ErrorBoundary fallback = {<SomethingWentWrong/>}>
     <Provider store = {store}>
     <BrowserRouter>
@@ -21,5 +21,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
    
 
    
-  </React.StrictMode>,
+  
 )

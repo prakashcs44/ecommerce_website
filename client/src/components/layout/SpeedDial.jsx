@@ -10,30 +10,17 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {useNavigate} from "react-router-dom";
 import { useSelector,useDispatch } from 'react-redux';
-import {logout,clearStatus} from "../../redux/slices/userSlice";
-import { LOGOUT_FAIL, LOGOUT_SUCCESS } from '../../redux/constants/user';
-import toast from "react-hot-toast";
+import {logout} from "../../redux/slices/userSlice";
+
 
 export default function BasicSpeedDial() {
 
-   const {user,type,error} = useSelector(state=>state.user);
+   const {user} = useSelector(state=>state.user);
    const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
- useEffect(()=>{
-  
-   if(type===LOGOUT_SUCCESS){
-    toast.success("Logout successfully");
-    dispatch(clearStatus());
-    navigate("/auth");
-   }
-   if(type===LOGOUT_FAIL){
-    toast.error(error);
-    dispatch(clearStatus());
-   }
-
- },[type])
+ 
 
    const orderFunc = ()=>{
      navigate("/orders");
