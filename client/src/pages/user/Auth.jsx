@@ -5,7 +5,7 @@ import { Avatar, Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import ButtonLoader from "../../components/loaders/ButtonLoader"
-import { LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_REQUEST,LOGOUT_SUCCESS,LOGOUT_FAIL } 
+import { LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_USER_REQUEST } 
 from "../../redux/constants/user.js"
 
 
@@ -31,18 +31,6 @@ const Auth = () => {
       toast.error(error);
       dispatch(clearStatus());
     }
-
-    if(type===LOGOUT_SUCCESS){
-       toast.success("Logout successfully");
-       dispatch(clearStatus());
-       navigate("/auth");
-      }
-    if(type===LOGOUT_FAIL){
-       toast.error(error);
-       dispatch(clearStatus());
-    }
-   
-   
 
 
   }, [type]);
