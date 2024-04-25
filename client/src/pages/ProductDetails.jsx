@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Carousel from '../components/product/Carousel';
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetails } from '../redux/slices/productDetailsSlice';
-import { useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/loaders/PageLoader";
 import Rating from "../components/product/Rating";
 import ReviewCard from '../components/ReviewCard';
@@ -21,7 +21,9 @@ import axiosClient from '../axiosClient';
 
 function ProductDetails() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { product, loading, error } = useSelector(state => state.productDetails);
+  const {isAuthenticated} = useSelector(state=>state.user);
   const { id } = useParams();
   const [quantity,setQuantity] = useState(1);
   const [rating,setRating] = useState(0);
@@ -41,6 +43,9 @@ function ProductDetails() {
 
 
   const addToCartHandler = ()=>{
+    if(!isAuthenticated){
+      return navigate("/auth");
+    }
     dispatch(addItemToCart({productId:id,quantity}));
     toast.success("Product added to cart");
    
@@ -54,6 +59,9 @@ function ProductDetails() {
   }
 
   const submitReviewHandler = ()=>{
+    if(!isAuthenticated){
+      return navigate("/auth");
+    }
     setOpen(true);
   }
 
