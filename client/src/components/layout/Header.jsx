@@ -8,13 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useDispatch, useSelector} from "react-redux";
 import SpeedDial from './SpeedDial';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Drawer from "./Drawer";
 import toast from "react-hot-toast";
 import { LOGOUT_FAIL,LOGOUT_SUCCESS } from '../../redux/constants/user';
-
+import toast from "react-hot-toast";
+import { clearStatus } from '../../redux/slices/userSlice';
 export default function Header() {
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {type} = useSelector(state=>state.user);
 
