@@ -6,14 +6,23 @@ import MetaData from "../../components/layout/MetaData";
 import { Button } from "@mui/material";
 import { getCartItems } from "../../redux/slices/cartSlice";
 import NothingToShow from "../../components/NothingToShow";
+import PageLoader from "../../components/loaders/PageLoader";
 
 function Cart() {
-  const { cartItems } = useSelector((store) => store.cart);
+  const { cartItems,loading } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCartItems());
   }, []);
+
+
+
+  if(loading){
+    return (
+      <PageLoader/>
+    )
+  }
 
   if (cartItems && cartItems.length == 0) {
     return (
