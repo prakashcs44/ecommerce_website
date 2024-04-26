@@ -1,83 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { removeItemFromCart } from "../redux/slices/cartSlice";
-import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
-  const [quantity,setQuantity] = useState(item.quantity);
 
-
-  const increaseQuantity = ()=>{
-    
-    if(quantity>=item.product?.Stock) return;
-    setQuantity(prevQuantity=>prevQuantity+1);
- }
-
- const decreaseQuantity  = ()=>{
-   if(quantity<=1) return;
-   setQuantity(prevQuantity=>prevQuantity-1);
- }
-
- const removeItemHandler = (product)=>{
+  const removeItemHandler = (product) => {
     dispatch(removeItemFromCart(product));
     toast.success("Item removed");
+  };
 
- }
-  
   return (
-    <div
-      key={item.product}
-      className="flex justify-between items-center mb-4 border-b border-gray-300 py-2"
-    >
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex py-6 px-4">
+      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
         <img
-          src={item.images[0].url}
-          alt={item.name}
-          className="w-20 h-20 object-cover mr-4"
+          src={item?.images?.[0].url}
+          alt={item?.name}
+          className="h-full w-full object-cover object-center"
         />
-        <div className="flex flex-col">
-          <Link to={`/product/${item.product}`} className="text-blue-500">
-            {item.name}
-          </Link>
-          <span>{`Price: ₹${item.price}`}</span>
-          <Button
-          variant = "outlined"
-          color = "error"
-            onClick={()=>removeItemHandler(item.product)}
-           
+      </div>
+
+      <div className="ml-4 flex flex-1 flex-col">
+        <div>
+          <div className="flex justify-between text-base font-medium text-gray-900">
+            <h3>
+              <a href="#">{item?.name}</a>
+            </h3>
+            <p className="ml-4">₹ {item?.price}</p>
+          </div>
+         
+        </div>
+        <div className="flex flex-1 items-end justify-between text-sm">
+          <p className="text-gray-500">Qty {item?.quantity}</p>
+          <IconButton
+           color = "error"
+           onClick={()=>removeItemHandler(item?.product)}
           >
-            Remove
-          </Button>
+            <DeleteIcon/>
+          </IconButton>
+         
         </div>
       </div>
-      <div className="flex items-center justify-center">
-        <Button
-         variant = "outlined"
-         
-          onClick={decreaseQuantity}
-        >
-          -
-        </Button>
-        <input
-          type="number"
-          value={quantity}
-          readOnly
-          className="w-10 text-center mx-2 border border-gray-300"
-        />
-        <Button
-          variant = "outlined"
-         
-          onClick={increaseQuantity}
-        >
-          +
-        </Button>
-      </div>
-      <p className="w-1/6 text-center">{`₹${
-        item.price * item.quantity
-      }`}</p>
     </div>
   );
 }
