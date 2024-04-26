@@ -7,12 +7,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {useDispatch, useSelector} from "react-redux";
-import SpeedDial from './SpeedDial';
 import { Link, useNavigate } from 'react-router-dom';
 import Drawer from "./Drawer";
 import toast from "react-hot-toast";
 import { LOGOUT_FAIL,LOGOUT_SUCCESS } from '../../redux/constants/user';
 import { clearStatus } from '../../redux/slices/userSlice';
+import UserMenu from './UserMenu';
 export default function Header() {
 
 const navigate = useNavigate();
@@ -56,7 +56,7 @@ const dispatch = useDispatch();
             Ecommerce
           </Typography>
           {isAuthenticated?(
-              <SpeedDial user={user}/>
+              <UserMenu user={user}/>
           ):(
             <Button >
               <Link to = "/auth">
