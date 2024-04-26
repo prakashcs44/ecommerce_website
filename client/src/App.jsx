@@ -62,9 +62,9 @@ function App() {
   
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col h-screen">
       <Header />
-      <div className=" pt-20">
+      <div className=" pt-20 flex-1">
       <Routes>
         <Route path="/" element = {<Home/>}/>
         <Route path="/product/:id" element = {<ProductDetails/>}/>
