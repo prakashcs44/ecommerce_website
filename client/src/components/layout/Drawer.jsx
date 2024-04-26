@@ -23,26 +23,27 @@ export default function TemporaryDrawer({open,onClose}) {
 
 function DrawerList() {
 
- const currPath =  useLocation().pathname.split("/")[1];
+ 
 
 
   return (
     <div className="flex flex-col gap-4 items-start justify-center px-8 py-8">
-      <LinkItem name={"Home"} path={"/"} currPath={currPath} icon={<HomeIcon />}/>
-      <LinkItem name={"Products"} path={"/products"} currPath={currPath} icon={<ShoppingCartIcon/>}/>
+      <LinkItem name={"Home"} path={"/"}  icon={<HomeIcon/>}/>
+      <LinkItem name={"Products"} path={"/products"} icon={<ShoppingCartIcon/>}/>
+      
     </div>
   );
 }
 
 
-function LinkItem({path,currPath,name,icon}){
-
-  const textColor = path==="/"+currPath&&"text-blue-600";
+function LinkItem({path,name,icon}){
+  const currPath =  useLocation().pathname.split("/")[1];
+  const activeColor = path==="/"+currPath&&"text-blue-600";
 
   return (
-    <Link to={path} className="flex items-center">
+    <Link to={path} className={`flex items-center gap-2 ${activeColor} hover:text-blue-500 transition duration-300 ease-in-out`}>
     {icon}
-    <Typography variant="body1"  className={`${textColor}`}>{name}</Typography>
+    <Typography variant="body1" >{name}</Typography>
   </Link>
   )
 }
