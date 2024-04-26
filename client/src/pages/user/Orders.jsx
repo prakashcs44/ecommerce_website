@@ -10,10 +10,11 @@ import LaunchIcon from "@mui/icons-material/Launch";
 
 import IconButton from '@mui/material/IconButton';
 import NothingToShow from "../../components/NothingToShow";
+import PageLoader from "../../components/loaders/PageLoader";
 
 const MyOrders = () => {
   const dispatch = useDispatch();
-  const { status, error, orders } = useSelector((state) => state.order);
+  const { status, orders } = useSelector((state) => state.order);
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -21,7 +22,11 @@ const MyOrders = () => {
     dispatch(myOrders());
   }, []);
 
-  
+   if(status==="loading"){
+    return (
+      <PageLoader/>
+    )
+   }
 
   return (
     <>
