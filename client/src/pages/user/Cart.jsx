@@ -11,7 +11,6 @@ import PageLoader from "../../components/loaders/PageLoader";
 function Cart() {
   const { cartItems,loading } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getCartItems());
   }, []);
