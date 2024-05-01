@@ -1,6 +1,6 @@
 import { Slider, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React from 'react'
+
 
 function PriceFilter({max,min,value,onChange,onChangeCommitted}) {
 
