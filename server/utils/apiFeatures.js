@@ -14,9 +14,9 @@ class ApiFeatures {
   }
 
   filter() {
-    if (!this.query.category||this.query.category?.trim()==="") return this;
+
   const category = this.query.category;
-   
+   if(category&&category!=="")
    this.products = this.products.filter(product=>product?.category===category);
   
    const maxPrice = parseInt(this.query.max_price);
