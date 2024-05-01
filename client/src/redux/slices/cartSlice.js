@@ -25,7 +25,7 @@ const cartSlice =  createSlice({
   initialState,
   extraReducers:(builder)=>{
     builder.addCase(addItemToCart.fulfilled,(state,action)=>{
-        state.cartItems =action.payload.cart;
+        state.cartItems =action.payload;
         state.error="";
         state.loading = false;
     })
@@ -38,7 +38,7 @@ const cartSlice =  createSlice({
         state.loading = true;
     })
     .addCase(removeItemFromCart.fulfilled,(state,action)=>{
-      state.cartItems = action.payload.cart;
+      state.cartItems = action.payload;
       state.error="";
       state.loading = false;
     })
@@ -50,7 +50,7 @@ const cartSlice =  createSlice({
       state.loading = true;
     })
     .addCase(getCartItems.fulfilled,(state,action)=>{
-      state.cartItems = action.payload.cart;
+      state.cartItems = action.payload;
       state.error="";
       state.loading = false;
     })
