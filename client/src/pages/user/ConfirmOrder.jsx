@@ -54,7 +54,7 @@ const ConfirmOrder = () => {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <p className="font-semibold w-32">Name:</p>
-                  <span>{user.name}</span>
+                  <span>{user?.name}</span>
                 </div>
                 <div className="flex items-center">
                   <p className="font-semibold w-32">Phone:</p>
@@ -73,11 +73,11 @@ const ConfirmOrder = () => {
               <div className="space-y-4">
                 {cartItems &&
                   cartItems.map((item) => (
-                    <div key={item.product} className="flex items-center space-x-4">
+                    <div key={item._id} className="flex items-center space-x-4">
                       <img src={item.images[0].url} alt="Product" className="w-16 h-16 object-cover rounded-md" />
                       <div>
-                        <Link to={`/product/${item.product}`} className="text-blue-600 hover:underline">
-                          {item.product.name}
+                        <Link to={`/product/${item._id}`} className="text-blue-600 hover:underline">
+                          {item.name}
                         </Link>{" "}
                         <span>
                           {item.quantity} X ₹{item.price} ={" "}
