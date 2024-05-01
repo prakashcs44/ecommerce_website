@@ -42,12 +42,14 @@ const Auth = () => {
       const data = { email, password };
       dispatch(login(data));
     } else {
-      const myForm = new FormData();
-      myForm.append("email", email);
-      myForm.append("password", password);
-      myForm.append("name", name);
-      myForm.append("avatar", avatar);
-      dispatch(register(myForm));
+     
+      const myData = {
+        email,
+        password,
+        name,
+        avatar
+      }
+      dispatch(register(myData));
     }
     // Clear form fields
     setEmail("");
