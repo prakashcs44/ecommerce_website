@@ -324,7 +324,7 @@ exports.addItemToCart = catchAsyncError(async (req,res,next)=>{
     cart.items.push(newCartItem);
     await cart.save();
     await cart.populate("items.product");
-    console.log(cart.items);
+   
     
     res.status(200).json({ success: true, cart: cart.items });
 
@@ -362,7 +362,7 @@ exports.removeItemFromCart = catchAsyncError(async (req,res,next)=>{
     
    
     await cart.save();
-
+    await cart.populate("items.product");
     
     
     
