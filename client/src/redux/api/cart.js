@@ -6,7 +6,10 @@ export const apiAddItemToCart = async(data)=>{
     try{
       
      const res = await axiosClient.post(link,data,config);
-     return res.data;
+    
+     const items = res.data?.cart;
+     return {quantity:items.quantity,...items.product};
+     
     }
   
     catch(err){
@@ -21,7 +24,8 @@ export const apiAddItemToCart = async(data)=>{
     const data = {productId};
     try{
      const res = await axiosClient.post(link,data,config);
-     return res.data;
+     const items = res.data?.cart;
+     return {quantity:items.quantity,...items.product};
     }
   
   
@@ -39,7 +43,9 @@ export const apiAddItemToCart = async(data)=>{
       try{
   
         const res = await axiosClient.get(link,config);
-        return res.data;
+        console.log(res.data);
+        const items = res.data?.cart;
+        return {quantity:items.quantity,...items.product};
         
       }
       catch(err){
