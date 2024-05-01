@@ -2,6 +2,7 @@ import React from 'react';
 import MetaData from '../../components/layout/MetaData';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import defaultUserImg from "../../assets/default_user.jpg";
 
 function Profile() {
   const { user } = useSelector(state => state.user);
@@ -17,7 +18,7 @@ function Profile() {
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden flex flex-col  items-center">
           <div className="text-center pt-8">
             <h1 className="text-3xl font-bold text-gray-800">My Profile</h1>
-            <img src={user?.avatar?.url} alt={user?.name} className="mx-auto mt-4 w-32 h-32 rounded-full border-4 border-blue-500" />
+            <img src={user?.avatar?.url||defaultUserImg} alt={user?.name} className="mx-auto mt-4 w-32 h-32 rounded-full border-4 border-blue-500" />
             <Link to="/edit-profile" className="block mt-4 text-blue-500 hover:underline">Edit Profile</Link>
           </div>
           <div className="px-6 py-8">
