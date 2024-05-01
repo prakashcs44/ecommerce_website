@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import defaultUserImg from "../../assets/default_user.jpg"
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -81,7 +81,7 @@ function UserMenu({ user }) {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title={user?.name}>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt={user?.name} src={user?.avatar?.url} />
+          <Avatar alt={user?.name} src={user?.avatar?.url||defaultUserImg} />
         </IconButton>
       </Tooltip>
       <Menu
