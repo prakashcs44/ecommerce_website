@@ -319,21 +319,13 @@ exports.addItemToCart = catchAsyncError(async (req,res,next)=>{
     const newCartItem = {
        product: productId,
        quantity: quantity,
-       name:product.name,
-       price:product.price,
-       images:product.images,
-
        };
     
     cart.items.push(newCartItem);
-
-   
     await cart.save();
-
+    await cart.populate("items.product");
+    console.log(cart.items);
     
-   
-    
-   
     res.status(200).json({ success: true, cart: cart.items });
 
 
@@ -341,7 +333,9 @@ exports.addItemToCart = catchAsyncError(async (req,res,next)=>{
 
 exports.getCardItems = catchAsyncError(async (req,res,next)=>{
    const cart  = await Cart.findOne({user:req.user._id});
-   
+   if(cart){
+      await cart.populate("items.product");
+   }
    res.status(200).json({
       success:true,
        cart:cart?.items||[],
