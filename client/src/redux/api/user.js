@@ -26,9 +26,9 @@ export const apiLogin = async(data)=>{
   
  
     const link = `/user/register`;
-    const config = { headers: { "Content-Type": "multipart/form-data" }, withCredentials: true };
+    
     try{
-     const res = await axiosClient.post(link,data,config);
+     const res = await axiosClient.post(link,data);
      return res.data;
     }
     catch(err){
