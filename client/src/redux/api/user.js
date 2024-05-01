@@ -64,8 +64,8 @@ export const apiLogin = async(data)=>{
      
      try{
          const link = `/user/me/update`;
-         const config = { headers: { "Content-Type": "multipart/form-data" },withCredentials:true};
-         const res = await axiosClient.put(link,data,config);
+         
+         const res = await axiosClient.put(link,data);
          return res.data;
      }
      catch(err){
