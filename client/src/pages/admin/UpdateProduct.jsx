@@ -50,20 +50,21 @@ function UpdateProduct() {
    const updateProductSubmitHandler =async (e) => {
     e.preventDefault();
      setLoading(true);
-    const myForm = new FormData();
+     const myData={
+      name,
+      price,
+      description,
+      category,
+      stock,
+
+    }
     
-    myForm.set("name", name);
-    myForm.set("price", price);
-    myForm.set("description", description);
-    myForm.set("category", category);
-    myForm.set("Stock", stock);
+   
     if(imageChangeRef.current){
-    images.forEach((image) => {
-      myForm.append("images", image);
-    });
+      myData,images = images;
   }
      try{
-         await updateProduct({id,data:myForm});
+         await updateProduct({id,data:myData});
           toast.success("Product updated successfully");
      }
      catch(err){
