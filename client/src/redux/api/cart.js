@@ -8,7 +8,12 @@ export const apiAddItemToCart = async(data)=>{
      const res = await axiosClient.post(link,data,config);
     
      const items = res.data?.cart;
-     return {quantity:items.quantity,...items.product};
+     return items.map(item=>{
+      return {
+        quantity:item.quantity,
+        ...item.product
+      }
+    })
      
     }
   
@@ -25,7 +30,13 @@ export const apiAddItemToCart = async(data)=>{
     try{
      const res = await axiosClient.post(link,data,config);
      const items = res.data?.cart;
-     return {quantity:items.quantity,...items.product};
+     
+     return items.map(item=>{
+      return {
+        quantity:item.quantity,
+        ...item.product
+      }
+    })
     }
   
   
@@ -43,9 +54,14 @@ export const apiAddItemToCart = async(data)=>{
       try{
   
         const res = await axiosClient.get(link,config);
-        console.log(res.data);
         const items = res.data?.cart;
-        return {quantity:items.quantity,...items.product};
+         return items.map(item=>{
+          return {
+            quantity:item.quantity,
+            ...item.product
+          }
+        })
+       
         
       }
       catch(err){
