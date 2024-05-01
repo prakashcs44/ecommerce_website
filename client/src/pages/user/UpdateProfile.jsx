@@ -106,6 +106,7 @@ function UpdateProfile() {
             onChange={onAvatarChange}
             className=""
             placeholder="Avatar"
+            accept="image/*"
           />
         </div>
       </Form>
