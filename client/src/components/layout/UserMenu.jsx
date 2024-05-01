@@ -110,7 +110,7 @@ function UserMenu({ user }) {
           )
           .map((option) => (
             <MenuItem
-              key={option}
+              key={option.title}
               onClick={() => {
                 handleCloseUserMenu();
                 option.func();
