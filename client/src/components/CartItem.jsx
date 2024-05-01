@@ -5,13 +5,18 @@ import toast from "react-hot-toast";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+
 function CartItem({ item }) {
   const dispatch = useDispatch();
-
   const removeItemHandler = (product) => {
     dispatch(removeItemFromCart(product));
     toast.success("Item removed");
   };
+
+  const itemAvailable = item?.Stock>=item?.quantity;
+
+   
+
 
   return (
     <div className="flex py-6 px-4">
@@ -31,17 +36,22 @@ function CartItem({ item }) {
             </h3>
             <p className="ml-4">₹ {item?.price}</p>
           </div>
-         
+          <div
+            className={`${
+              itemAvailable? "text-green-600" : "text-red-600"
+            } text-sm `}
+          >
+            {itemAvailable ? "In Stock" : "Not Available"}
+          </div>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">
           <p className="text-gray-500">Qty {item?.quantity}</p>
           <IconButton
-           color = "error"
-           onClick={()=>removeItemHandler(item?.product)}
+            color="error"
+            onClick={() => removeItemHandler(item?.product)}
           >
-            <DeleteIcon/>
+            <DeleteIcon />
           </IconButton>
-         
         </div>
       </div>
     </div>
