@@ -41,11 +41,12 @@ function UpdateProfile() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const myForm = new FormData();
-    myForm.append("email", email);
-    myForm.append("name", name);
-    myForm.append("avatar", avatar);
-    dispatch(updateProfile(myForm));
+    const myData = {
+      email,
+      name,
+      avatar
+    }
+    dispatch(updateProfile(myData));
 
     // Clear form fields
     setEmail("");
