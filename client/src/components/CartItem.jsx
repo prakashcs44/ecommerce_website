@@ -4,7 +4,7 @@ import { removeItemFromCart } from "../redux/slices/cartSlice";
 import toast from "react-hot-toast";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import { Link } from "react-router-dom";
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
@@ -13,10 +13,7 @@ function CartItem({ item }) {
     toast.success("Item removed");
   };
 
-  const itemAvailable = item?.Stock>=item?.quantity;
-
-   
-
+  const itemAvailable = item?.Stock >= item?.quantity;
 
   return (
     <div className="flex py-6 px-4">
@@ -32,13 +29,15 @@ function CartItem({ item }) {
         <div>
           <div className="flex justify-between text-base font-medium text-gray-900">
             <h3>
-              <a href="#">{item?.name}</a>
+              <Link to={`/product/${item._id}`} className="hover:text-blue-600">
+                {item?.name}
+              </Link>
             </h3>
             <p className="ml-4">₹ {item?.price}</p>
           </div>
           <div
             className={`${
-              itemAvailable? "text-green-600" : "text-red-600"
+              itemAvailable ? "text-green-600" : "text-red-600"
             } text-sm `}
           >
             {itemAvailable ? "In Stock" : "Not Available"}
