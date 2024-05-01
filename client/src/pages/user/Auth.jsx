@@ -122,6 +122,7 @@ const Auth = () => {
                     onChange={onAvatarChange}
                     className=""
                     placeholder="Avatar"
+                    accept="image/*"
                   />
                 </div>
               </>
