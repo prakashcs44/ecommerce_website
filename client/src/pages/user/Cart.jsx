@@ -46,7 +46,7 @@ function Cart() {
         <div className="mt-8">
           <div className="-my-6 divide-y divide-gray-200">
             {cartItems.map((item) => (
-              <CartItem item={item} key={item.product} />
+              <CartItem item={item} key={item._id} />
             ))}
           </div>
         </div>
