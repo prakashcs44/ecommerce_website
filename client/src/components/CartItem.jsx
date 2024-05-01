@@ -48,7 +48,7 @@ function CartItem({ item }) {
           <p className="text-gray-500">Qty {item?.quantity}</p>
           <IconButton
             color="error"
-            onClick={() => removeItemHandler(item?.product)}
+            onClick={() => removeItemHandler(item?._id)}
           >
             <DeleteIcon />
           </IconButton>
