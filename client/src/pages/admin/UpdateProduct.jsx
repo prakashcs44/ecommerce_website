@@ -61,7 +61,7 @@ function UpdateProduct() {
     
    
     if(imageChangeRef.current){
-      myData,images = images;
+      myData.images = images;
   }
      try{
          await updateProduct({id,data:myData});
