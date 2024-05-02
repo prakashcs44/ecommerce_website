@@ -131,9 +131,17 @@ const Auth = () => {
           </div>
 
           <div className="flex justify-center flex-col items-center gap-1">
-            <Button
-            onClick={()=>dispatch(login({email:"test@gmail.com",password:"test1234"}))}
-            >Sign in as demo user</Button>
+            {isLogin && (
+              <Button
+                onClick={() =>
+                  dispatch(
+                    login({ email: "test@gmail.com", password: "test1234" })
+                  )
+                }
+              >
+                Sign in as demo user
+              </Button>
+            )}
 
             <Button
               disabled={
