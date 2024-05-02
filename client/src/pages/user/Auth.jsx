@@ -42,13 +42,12 @@ const Auth = () => {
       const data = { email, password };
       dispatch(login(data));
     } else {
-     
       const myData = {
         email,
         password,
         name,
-        avatar
-      }
+        avatar,
+      };
       dispatch(register(myData));
     }
     // Clear form fields
@@ -72,7 +71,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -131,7 +130,11 @@ const Auth = () => {
             )}
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center flex-col items-center gap-1">
+            <Button
+            onClick={()=>dispatch(login({email:"test@gmail.com",password:"test1234"}))}
+            >Sign in as demo user</Button>
+
             <Button
               disabled={
                 type === LOGIN_REQUEST || type === REGISTER_USER_REQUEST
