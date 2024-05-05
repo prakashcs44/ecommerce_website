@@ -50,28 +50,28 @@ Welcome to my e-commerce website project! This project is a full-stack web appli
 
 2. Go to the project directory and install dependencies for both the client and server
 
- ```bash
- cd client
- npm install
+   ```bash
+   cd client
+   npm install
 
- ```bash
- cd server
- npm install
+   ```bash
+   cd server
+   npm install
 
 3. Create a .env file in server directory and add the environment variables as shown in the .env.example files.
 
 4. Start the server
 
- ```bash
- cd server
- npm start
+   ```bash
+   cd server
+   npm start
 
 
  5. Start the client
 
- ```bash
- cd client
- npm run dev
+   ```bash
+   cd client
+   npm run dev
  
 
  
