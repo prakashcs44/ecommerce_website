@@ -29,17 +29,19 @@ const userSchema = new mongoose.Schema({
  avatar:{
     public_id:{
         type: String,
-        required: true,
+        
     },
     url:{
         type: String,
-        required: true,
+       
     }
 
  },
  role:{
     type:String,
-    default:"User",
+    enum:["user","admin"],
+    default:"user",
+   
  },
  resetPasswordToken:String,
  resetPasswordExpire:Date,
