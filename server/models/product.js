@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary");
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -80,5 +81,22 @@ const productSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+
+productSchema.pre('remove', async function(next) {
+  
+  try{
+    for (const image of this.images) {
+      await cloudinary.uploader.destroy(image.public_id);
+    }
+     return next();
+  }
+  catch(err){
+     return next(err);
+  }
+ 
+});
+
+
 
 module.exports = mongoose.model("Product", productSchema);
