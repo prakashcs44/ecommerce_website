@@ -3,7 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt  = require("jsonwebtoken");
 const crypto = require("crypto");
-
+const cloudinary = require("cloudinary");
 
 
 const userSchema = new mongoose.Schema({
@@ -56,6 +56,21 @@ userSchema.pre("save",async function(next){
    }
    this.password =  await bcrypt.hash(this.password,10)
 
+});
+
+
+userSchema.pre('remove', async function(next) {
+   try{
+      const imageId = this.avatar?.public_id;
+      if (imageId) {
+          await cloudinary.uploader.destroy(imageId);
+      }
+      return next();
+   }
+   catch(err){
+      return next(err);
+   }
+  
 });
 
 
