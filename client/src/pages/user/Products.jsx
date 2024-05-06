@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from 'react'
 import {useSelector,useDispatch} from "react-redux";
-import {getProducts,setPage} from "../../redux/slices/productSlice";
+import {getProducts} from "../../redux/slices/productSlice";
 import Loader from "../../components/loaders/PageLoader";
 import ProductCard from "../../components/product/ProductCard";
 import Pagination from '@mui/material/Pagination';
@@ -9,9 +9,12 @@ import SearchAndFilter from '../../components/product/SearchAndFilter';
 
 
 function Products() {
-  const {loading,error,products,resultPerPage,productsCount,page,keyword,category,price} = useSelector(state=>state.product);
+  const {loading,error,products,resultPerPage,productsCount} = useSelector(state=>state.product);
   const dispatch = useDispatch();
-   
+   const [keyword,setKeyword] = useState("");
+   const [price,setPrice] = useState([100,40000]);
+   const [category,setCategory] = useState("");
+   const [page,setPage] = useState(1);
   
   
 
@@ -24,13 +27,23 @@ function Products() {
 
 const pageChangeHandler = (event,value)=>{
 
-  dispatch(setPage(value));
+  setPage(value);
  
   dispatch(getProducts({keyword,page:value,category,price}));
 }
 
 
+const searchAndFilterProps = {
+    keyword,
+    price,
+    category,
+    page,
+    setCategory,
+    setKeyword,
+    setPage,
+    setPrice,
 
+};
 
 
   
@@ -51,7 +64,7 @@ const pageChangeHandler = (event,value)=>{
     </h2>
 
      <div>
-      <SearchAndFilter/>
+      <SearchAndFilter  {...searchAndFilterProps}/>
      </div>
 
     <div className='w-[90vw] flex flex-wrap gap-10 justify-center mx-auto mb-10 px-10'>

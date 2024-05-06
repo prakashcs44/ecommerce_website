@@ -6,26 +6,26 @@ import Categories from './Categories';
 import { categories } from '../../data/productCategories';
 import PriceFilter from './PriceFilter';
 import Search from "./Search";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts,setCategory,setPage,setPrice,setKeyword} from "../../redux/slices/productSlice";
-function SearchAndFilter() {
+import { useDispatch } from "react-redux";
+import { getProducts} from "../../redux/slices/productSlice";
+function SearchAndFilter({price,keyword,category,setPrice,setPage,setCategory,setKeyword}) {
 
-    const {keyword,price,category} = useSelector(state=>state.product);
+  
     const [open,setOpen] = useState(false);
     const dispatch = useDispatch();
     
 
     const applyFilters = ()=>{
-         dispatch(setPage(1));
+         setPage(1);
          dispatch(getProducts({keyword,category,price,page:1}));
          setOpen(false);
     }
 
     const resetFilters = ()=>{
-        dispatch(setPage(1));
-        dispatch(setKeyword(""));
-        dispatch(setPrice([100,40000]));
-        dispatch(setCategory(""));
+        setPage(1);
+        setKeyword("");
+        setPrice([100,40000]);
+        setCategory("");
         dispatch(getProducts({}));
         setOpen(false);
     }
@@ -41,12 +41,12 @@ function SearchAndFilter() {
           Filters
         </Button>
         <Dialog onClose={() => setOpen(false)} open={open}>
-          <div className=" w-[30vw] py-5 h-[50vh] flex flex-col gap-9">
+          <div className="w-[80vw] md:w-[30vw] py-5 h-[50vh] flex flex-col gap-9">
             <div className="flex flex-col items-center gap-3">
               <Typography variant="h5">Select Category</Typography>
               <Categories
                 categories={categories}
-                onChange={(ev) => dispatch(setCategory(ev.target.value))}
+                onChange={(ev) => setCategory(ev.target.value)}
                 value={category}
               />
             </div>
@@ -56,7 +56,7 @@ function SearchAndFilter() {
                 max={40000}
                 min={100}
                 value={price}
-                onChange={(value) => dispatch(setPrice(value))}
+                onChange={(value) => setPrice(value)}
               />
             </div>
 
@@ -71,7 +71,7 @@ function SearchAndFilter() {
       </div>
       <Search
         value={keyword}
-        onChange={(ev) => dispatch(setKeyword(ev.target.value))}
+        onChange={(ev) => setKeyword(ev.target.value)}
         onSearch={()=>dispatch(getProducts({keyword,category,price,page:1}))}
        
       />
