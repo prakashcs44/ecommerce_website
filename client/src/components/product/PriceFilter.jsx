@@ -8,8 +8,8 @@ function PriceFilter({max,min,value,onChange,onChangeCommitted}) {
  
 
   return (
-    <div>
-        <Typography sx={{textAlign:"center"}}>Price</Typography>
+    <div className='flex flex-col items-center gap-10'>
+        <Typography variant='h5'>Price Range</Typography>
       <Slider
       value={value}
       sx = {{width:"100px"}}

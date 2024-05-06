@@ -1,27 +1,28 @@
 
 import React from 'react'
-import Select from "react-select"
+import Select from '@mui/material/Select';
+import { MenuItem } from '@mui/material';
 
 
 function Categories({categories,onChange,value}) {
 
 
- const options = categories?.map(c=>{
-    return {value:c,label:c};
- })
 
 
 
   return (
    <Select
-   placeholder = "category..."
-   options={options}
-   value={value&&{value,label:value}}
-   onChange={(v)=>onChange(v?.value)}
-   isClearable = {true}
-   className=' z-50'
+   
+   className=' z-50 md:w-1/2 w-3/4'
+   onChange={onChange}
+   value={value}
+   
 
-   />
+   >
+     {
+      categories.map(c=>(<MenuItem value = {c} >{c}</MenuItem>))
+     }
+      </Select>
   )
 }
 

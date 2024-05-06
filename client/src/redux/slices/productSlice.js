@@ -11,6 +11,10 @@ const initialState = {
   products:[],
   resultPerPage:0,
   productsCount:0,
+  page:1,
+  price:[100,40000],
+  keyword:"",
+  category:"",
 }
 
 const productSlice =  createSlice({
@@ -37,9 +41,21 @@ const productSlice =  createSlice({
   reducers:{
     clearErrors(state,action){
       state.error = "";
+   },
+   setKeyword(state,action){
+      state.keyword = action.payload;
+   },
+   setPage(state,action){
+      state.page = action.payload;
+   },
+   setCategory(state,action){
+    state.category = action.payload;
+   },
+   setPrice(state,action){
+    state.price = action.payload;
    }
   }
 })
 
-
+export const {setKeyword,setCategory,setPage,setPrice} = productSlice.actions;
 export default productSlice.reducer;

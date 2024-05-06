@@ -1,6 +1,6 @@
 import axiosClient from "../../axiosClient";
 
-export const apiGetProducts = async({keyword,page=1,price=[0,25000],category})=>{
+export const apiGetProducts = async({keyword,page=1,price=[100,40000],category})=>{
 
     try{
      let link = `/product?page=${page}&max_price=${price[1]}&min_price=${price[0]}`;
