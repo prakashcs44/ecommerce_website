@@ -5,6 +5,7 @@ import { getSingleOrder,updateOrder } from "../../redux/api/ordersAdmin";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import ButtonLoader from "../../components/loaders/ButtonLoader";
+import MetaData from "../../components/layout/MetaData";
 
 const SingleProductPage = () => {
   const [status, setStatus] = useState();
@@ -67,6 +68,8 @@ const SingleProductPage = () => {
   }, []);
 
   return (
+    <>
+    <MetaData title = "UPDATE ORDER"/>
     <div className="container mx-auto mt-8">
       <div className="bg-white rounded-lg shadow p-6">
         <h1 className="text-2xl font-bold mb-4 text-center pb-6 border-b-2">
@@ -132,6 +135,7 @@ const SingleProductPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
