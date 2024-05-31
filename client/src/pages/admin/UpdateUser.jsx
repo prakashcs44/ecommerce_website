@@ -5,6 +5,7 @@ import { getSingleUser,updateUserRole } from "../../redux/api/usersAdmin";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import ButtonLoader from "../../components/loaders/ButtonLoader";
+import Metadata from "../../components/layout/MetaData";
 
 const SingleProductPage = () => {
   const [role, setRole] = useState();
@@ -68,6 +69,8 @@ const SingleProductPage = () => {
   }, []);
 
   return (
+    <>
+    <MetaData title = "UPDATE USER"/>
     <div className="container mx-auto mt-8">
       <div className="bg-white rounded-lg shadow p-6">
         <h1 className="text-2xl font-bold mb-4 text-center pb-6 border-b-2">
@@ -133,6 +136,7 @@ const SingleProductPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
