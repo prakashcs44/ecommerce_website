@@ -11,7 +11,9 @@ import {
   REGISTER_USER_REQUEST,
 } from "../../redux/constants/user.js";
 import SensitiveInput from "../../components/SensitiveInput.jsx";
-import authImg from "../../assets/login.jpg"
+import authImg from "../../assets/login.jpg";
+import MetaData from "../../components/layout/MetaData.jsx";
+
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,6 +73,8 @@ const Auth = () => {
   };
 
   return (
+    <>
+    <MetaData title = {isLogin?"LOGIN":"REGISTER"} />
     <div className=" flex flex-col   lg:flex-row items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 lg:mr-40">
       <img src={authImg} className="size-[90vmin] md:size-[70vmin]"/>
       <div className="space-y-8">
@@ -184,6 +188,7 @@ const Auth = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
