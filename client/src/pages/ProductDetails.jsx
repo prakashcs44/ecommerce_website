@@ -104,7 +104,7 @@ function ProductDetails() {
 
   return (
     <>
-     <MetaData title={`${product.name} - ECOMMERCE`}/>
+     <MetaData title={`${product.name}`}/>
     <div className="flex flex-col items-center justify-center py-8 gap-24 sm:flex-row">
       <div className=' max-w-[30rem] sm:w-96 mr-0 sm:mr-4'>
         {product.images&&(
