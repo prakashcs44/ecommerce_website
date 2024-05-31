@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import {  useNavigate } from 'react-router-dom';
 import { getAllOrders, deleteOrder } from '../../redux/api/ordersAdmin';
 import NothingToShow from '../../components/NothingToShow';
-
+import "../../components/layout/MetaData";
 
 
 function OrdersAll() {
@@ -58,6 +58,8 @@ function OrdersAll() {
   }
 
   return (
+    <>
+    <MetaData title = "ALL ORDERS"/>
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4 text-center pb-6 border-b-2">All Orders</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -92,6 +94,7 @@ function OrdersAll() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 
