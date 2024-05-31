@@ -8,6 +8,8 @@ import {Link, useNavigate} from "react-router-dom";
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import {getAllProducts,deleteProduct} from "../../redux/api/productsAdmin"
 import NothingToShow from '../../components/NothingToShow';
+import "../../components/layout/MetaData";
+
 
 function ProductsAll() {
   
@@ -68,6 +70,8 @@ function ProductsAll() {
   }
 
   return (
+    <>
+    <MetaData title = "PRODUCTS ALL"/>
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4 text-center pb-6 border-b-2">All Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -103,6 +107,7 @@ function ProductsAll() {
         ))}
       </div>
     </div>
+    </>
   );
 
  
