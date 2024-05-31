@@ -2,9 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import MetaData from '../components/layout/MetaData';
 
 function PageNotFound() {
   return (
+    <>
+    <MetaData title = "NOT FOUND"/>
     <div className="flex flex-col items-center justify-center h-screen gap-2">
       <ErrorOutlineIcon sx={{ fontSize: 100, color: 'gray' }} />
       <Typography variant="h4" gutterBottom className="mt-4">
@@ -23,6 +26,7 @@ function PageNotFound() {
         </Button>
       </Link>
     </div>
+    </>
   );
 }
 
